@@ -1,14 +1,23 @@
 # _*_ coding utf-8 _*_
 from django.contrib import admin
-from models import ficha_de_matricula
+from models import Cadastros
+from models import SubCadastro
+
 # Register your models here.
 
-class displayNome(admin.ModelAdmin):
-	list_display = ['nome_do_aluno','dia_Atendimento','horario_atendimento']
+class CadastrosAdmin(admin.ModelAdmin):
+	list_display = ['NomeCadastro']
 	#list_filter = ['nome_do_aluno']
-	search_fields = ['nome_do_aluno']
+	#search_fields = ['']
 	save_as = True 
-	date_hierarchy = 'data_matricula'
+	
+class SubCadastroAdmin(admin.ModelAdmin):
+	list_display = ['NomeSubCadastro']
+	#list_filter = ['nome_do_aluno']
+	#search_fields = ['']
+	save_as = True 
 
 
-admin.site.register(ficha_de_matricula,displayNome)
+#deve sempre ser colocado como tupla(em pares)
+admin.site.register(Cadastros,CadastrosAdmin)
+admin.site.register(SubCadastro,SubCadastroAdmin)

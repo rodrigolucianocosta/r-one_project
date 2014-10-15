@@ -1,29 +1,38 @@
+#coding:utf-8
 from django.db import models
-
+#from django.core.validators import MinValueValidator,MaxvalueValidator
 # Create your models here.
-class ficha_de_matricula(models.Model): 
-	cid  = models.CharField('cid',max_length=100) 
-	nome_do_aluno = models.CharField(max_length=100) 
-	cartao_sus = models.CharField(max_length=20) 
-	cpf = models.CharField(max_length=11) 
-	responsavel_pelo_aluno = models.CharField(max_length=100) 
-	rua = models.CharField(max_length=100) 
-	numero = models.IntegerField() 
-	bairro = models.CharField(max_length=100) 
-	cidade = models.CharField(max_length=100) 
-	data_de_nascimento = models.DateField() 
-	naturalidade = models.CharField(max_length=50) 
-	idade = models.CharField(max_length=2) 
-	sexo = models.CharField(max_length=1) 
-	cor = models.CharField(max_length=10) 
-	nome_do_Pai = models.CharField(max_length=100) 
-	profissao_do_Pai = models.CharField(max_length=50) 
-	nome_da_Mae = models.CharField(max_length=100) 
-	profissao_da_Mae = models.CharField(max_length=50) 
-	email = models.EmailField() 
-	dia_Atendimento = models.CharField(max_length=100) 
-	horario_atendimento = models.DateTimeField('horario') 
-	data_matricula = models.DateField() 
-	 
-	def __unicode__(self): 
-		return self.ficha_de_matricula 
+
+TIPO_CADASTRO = [
+      
+      ('A', 'CADASTRO PESSOAL'),
+      ('B', 'CADASTRO CONSULTA'),
+      ('C', 'ATENDIMENTO FAMILIAR')
+
+
+]
+
+class Cadastros(models.Model):
+	NomeCadastro = models.CharField('Nome do Cadastro',max_length=100, null=True)
+	DataMatricula = models.DateField('Data de Cadastro',null=True)
+
+class Meta:
+	verbose_name = "Macro Cadastro"
+	verbose_name_plural = "Macro Cadastros"
+
+def __unicode__(self):
+	return self.NomeCadastro
+
+class SubCadastro(models.Model):
+	Cadastro =  models.ForeignKey(Cadastros, verbose_name = "Cadastro",null=False)
+	NomeSubCadastro = models.CharField('Nome NomeSubCadastro',max_length=100,null=False)
+	TipoSubCadastro = models.CharField('Tipo SubEvento',max_length=1)
+	#Responsavel = models.ForeignKey()
+
+	class Meta:
+		verbose_name = "SubCadastro"
+		verbose_name_plural = "SubCadastros"
+
+	def __unicode__(self):
+		return self.NomeSubCadastro
+
