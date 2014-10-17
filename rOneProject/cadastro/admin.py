@@ -14,12 +14,8 @@ class PessoaAdmin(admin.ModelAdmin):
 	search_fields = ['Nome','Cpf']
 	save_as = True 
 
-class EnderecoAdmin(admin.ModelAdmin):
-	list_display = ['Rua']
-	save_as = True
-
 
 
 #deve sempre ser colocado como tupla(em pares)
 admin.site.register(Pessoa,PessoaAdmin)
-admin.site.register(Endereco,EnderecoAdmin)
+
