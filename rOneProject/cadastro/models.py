@@ -1,38 +1,34 @@
 #coding:utf-8
 from django.db import models
-#from django.core.validators import MinValueValidator,MaxvalueValidator
+from localflavor.br.br_states import STATE_CHOICES
 # Create your models here.
 
-TIPO_CADASTRO = [
+SEXO_OPCOES = [
       
-      ('A', 'CADASTRO PESSOAL'),
-      ('B', 'CADASTRO CONSULTA'),
-      ('C', 'ATENDIMENTO FAMILIAR')
+      ('M', 'Masculino'),
+      ('F', 'Feminino')
+      ]
 
+class Pessoa(models.Model):
+	cid = models.IntegerField('Cid',null=True)
+	NomePessoa = models.CharField('Nome',max_length=100, null=True)
+	Cpf = models.CharField('Cpf',max_length=14,null=True)
+	Rg = models.CharField('Rg',max_length=20,null=True, )
+	DataNascimento = models.DateField('Data de Nascimento',null=True)
+	Telefone = models.IntegerField('Telefone',max_length=15,null=True)
+	Celular = models.IntegerField(max_length=10,unique=True,null=True,validators=[RegexValidator(regex='^\d{10}$', message='Tamanho maximo de 10 caracteres',code='numero invalido')])
+	NomeMae = models.CharField('Nome da Mae',max_length=50,null=True)
+	NomePai = models.CharField('Nome do Pai',max_length=50,null=True)
+	Rua = models.CharField('Nome da Rua',max_length=100,null=True)
+	numero = models.IntegerField('numero',max_length=5,null=True)
+	complemento = models.CharField('complemento',max_length=10,null=True)
+	bairro = models.CharField('Bairro',max_length=100,null=True)
+	cidade = models.CharField('Cidade',max_length=100,null=True)
+	uf = models.CharField('UF',max_length=2,choices=STATE_CHOICES,null=True)
+	
 
-]
-
-class Cadastros(models.Model):
-	NomeCadastro = models.CharField('Nome do Cadastro',max_length=100, null=True)
-	DataMatricula = models.DateField('Data de Cadastro',null=True)
-
-class Meta:
-	verbose_name = "Macro Cadastro"
-	verbose_name_plural = "Macro Cadastros"
-
-def __unicode__(self):
-	return self.NomeCadastro
-
-class SubCadastro(models.Model):
-	Cadastro =  models.ForeignKey(Cadastros, verbose_name = "Cadastro",null=False)
-	NomeSubCadastro = models.CharField('Nome NomeSubCadastro',max_length=100,null=False)
-	TipoSubCadastro = models.CharField('Tipo SubEvento',max_length=1)
-	#Responsavel = models.ForeignKey()
-
-	class Meta:
-		verbose_name = "SubCadastro"
-		verbose_name_plural = "SubCadastros"
 
 	def __unicode__(self):
-		return self.NomeSubCadastro
+		return self.NomePessoa
+
 

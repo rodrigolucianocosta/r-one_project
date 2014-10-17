@@ -1,23 +1,25 @@
-# _*_ coding utf-8 _*_
+#coding:utf-8
 from django.contrib import admin
-from models import Cadastros
-from models import SubCadastro
+from models import Pessoa
+from models import PessoaForm
 
 # Register your models here.
 
-class CadastrosAdmin(admin.ModelAdmin):
-	list_display = ['NomeCadastro']
-	#list_filter = ['nome_do_aluno']
-	#search_fields = ['']
+class PessoaAdmin(admin.ModelAdmin):
+    
+    form PessoaForm
+
+	list_display = ['Nome']
+	list_filter = ['Sexo']
+	search_fields = ['Nome','Cpf']
 	save_as = True 
-	
-class SubCadastroAdmin(admin.ModelAdmin):
-	list_display = ['NomeSubCadastro']
-	#list_filter = ['nome_do_aluno']
-	#search_fields = ['']
-	save_as = True 
+
+class EnderecoAdmin(admin.ModelAdmin):
+	list_display = ['Rua']
+	save_as = True
+
 
 
 #deve sempre ser colocado como tupla(em pares)
-admin.site.register(Cadastros,CadastrosAdmin)
-admin.site.register(SubCadastro,SubCadastroAdmin)
+admin.site.register(Pessoa,PessoaAdmin)
+admin.site.register(Endereco,EnderecoAdmin)
