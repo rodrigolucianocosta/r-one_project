@@ -3,20 +3,23 @@ from django.db import models
 from localflavor.br.br_states import STATE_CHOICES
 # Create your models here.
 
+
 SEXO_OPCOES = [
-      
-      ('M', 'Masculino'),
-      ('F', 'Feminino')
-      ]
+        ('M','Masculino'),
+        ('F','Feminino')
+
+        ]
+
 
 class Pessoa(models.Model):
 	cid = models.IntegerField('Cid',null=True)
 	NomePessoa = models.CharField('Nome',max_length=100, null=True)
 	Cpf = models.CharField('Cpf',max_length=14,null=True)
 	Rg = models.CharField('Rg',max_length=20,null=True, )
+	Sexo = models.CharField('Sexo',max_length=1,choices=STATE_CHOICES,null=True)
 	DataNascimento = models.DateField('Data de Nascimento',null=True)
 	Telefone = models.IntegerField('Telefone',max_length=15,null=True)
-	Celular = models.IntegerField(max_length=10,unique=True,null=True,validators=[RegexValidator(regex='^\d{10}$', message='Tamanho maximo de 10 caracteres',code='numero invalido')])
+	Celular = models.IntegerField(max_length=10,unique=True,null=True)
 	NomeMae = models.CharField('Nome da Mae',max_length=50,null=True)
 	NomePai = models.CharField('Nome do Pai',max_length=50,null=True)
 	Rua = models.CharField('Nome da Rua',max_length=100,null=True)

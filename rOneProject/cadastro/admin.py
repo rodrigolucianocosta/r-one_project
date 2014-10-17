@@ -1,18 +1,20 @@
 #coding:utf-8
 from django.contrib import admin
 from models import Pessoa
-from models import PessoaForm
+from forms import PessoaForm
 
 # Register your models here.
 
 class PessoaAdmin(admin.ModelAdmin):
     
-    form PessoaForm
+       form = PessoaForm
 
-	list_display = ['Nome']
-	list_filter = ['Sexo']
-	search_fields = ['Nome','Cpf']
-	save_as = True 
+       list_display = ['NomePessoa','Cpf']
+       list_filter = ['Sexo']
+       search_fields = ['NomePessoa','Cpf']
+
+
+	#save_as = True 
 
 
 
