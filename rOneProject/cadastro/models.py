@@ -14,7 +14,7 @@ SEXO_OPCOES = [
 class Pessoa(models.Model):
 	cid = models.IntegerField('Cid',null=True)
 	NomePessoa = models.CharField('Nome',max_length=100, null=True)
-	Cpf = models.CharField('Cpf',max_length=14,null=True)
+	Cpf = models.CharField('Cpf',max_length=11,null=True)
 	Rg = models.CharField('Rg',max_length=20,null=True, )
 	Sexo = models.CharField('Sexo',max_length=1,choices=SEXO_OPCOES,null=True)
 	DataNascimento = models.DateField('Data de Nascimento',null=True)
@@ -35,7 +35,7 @@ class Pessoa(models.Model):
 		return self.NomePessoa
 
 class Atendimento(models.Model):
-	Consulta = models.OneToOneField(Pessoa)
+	Paciente = models.OneToOneField(Pessoa)
 	DataConsulta = models.DateField('data da consulta',null=True)
 	#NomeMedico = 
 
