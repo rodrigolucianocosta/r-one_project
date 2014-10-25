@@ -34,11 +34,10 @@ class Pessoa(models.Model):
 	def __unicode__(self):
 		return self.NomePessoa
 
-'''class Atendimento(models.Model):
+class Atendimento(models.Model):
 	Consulta = models.OneToOneField(Pessoa)
 	DataConsulta = models.DateField('data da consulta',null=True)
 	#NomeMedico = 
 
 	def __unicode__(self):
 		return self.DataConsulta
-'''

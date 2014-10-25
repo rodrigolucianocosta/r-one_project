@@ -6,4 +6,6 @@ class PessoaForm(forms.ModelForm):
 
 	CPF = BRCPFField()
 
+	class Meta:
+
 		exclude = ['URL']
