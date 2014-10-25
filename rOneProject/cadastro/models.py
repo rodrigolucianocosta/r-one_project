@@ -16,7 +16,7 @@ class Pessoa(models.Model):
 	NomePessoa = models.CharField('Nome',max_length=100, null=True)
 	Cpf = models.CharField('Cpf',max_length=14,null=True)
 	Rg = models.CharField('Rg',max_length=20,null=True, )
-	Sexo = models.CharField('Sexo',max_length=1,choices=STATE_CHOICES,null=True)
+	Sexo = models.CharField('Sexo',max_length=1,choices=SEXO_OPCOES,null=True)
 	DataNascimento = models.DateField('Data de Nascimento',null=True)
 	Telefone = models.IntegerField('Telefone',max_length=15,null=True)
 	Celular = models.IntegerField(max_length=10,unique=True,null=True)
@@ -34,4 +34,10 @@ class Pessoa(models.Model):
 	def __unicode__(self):
 		return self.NomePessoa
 
+class Atendimento(models.Model):
+	Consulta = models.OneToOneField(Pessoa)
+	DataConsulta = models.DateField('data da consulta',null=True)
+	#NomeMedico = 
 
+	def __unicode__(self):
+		return self.DataConsulta
