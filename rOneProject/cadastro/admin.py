@@ -9,8 +9,8 @@ class PessoaAdmin(admin.ModelAdmin):
     
        
 
-    list_display = ['NomePessoa','Cpf']
-    list_filter = ['NomePessoa']
+    list_display = ['NomePessoa','Celular','NomeMae']
+    list_filter = ['cid']
     search_fields = ['NomePessoa','Cpf']
     save_as = True
 

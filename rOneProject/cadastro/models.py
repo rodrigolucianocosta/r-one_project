@@ -39,5 +39,5 @@ class Atendimento(models.Model):
 	DataConsulta = models.DateField('data da consulta',null=True)
 	#NomeMedico = 
 
-	def __unicode__(self):
-		return self.DataConsulta
+	#def __unicode__(self):
+	#	return self.DataConsulta
