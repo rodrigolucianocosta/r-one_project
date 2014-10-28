@@ -12,6 +12,7 @@ SEXO_OPCOES = [
 
 
 class Pessoa(models.Model):
+	
 	cid = models.IntegerField('Cid',null=True)
 	NomePessoa = models.CharField('Nome',max_length=100, null=True)
 	Cpf = models.CharField('Cpf',max_length=11,null=True)
