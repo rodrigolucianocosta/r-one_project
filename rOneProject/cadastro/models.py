@@ -12,7 +12,7 @@ SEXO_OPCOES = [
 
 
 class Pessoa(models.Model):
-	cid = models.IntegerField('Cid',null=True)
+	#cid = models.IntegerField('Cid',null=True)
 	NomePessoa = models.CharField('Nome',max_length=100, null=True)
 	Cpf = models.CharField('Cpf',max_length=11,null=True)
 	Rg = models.CharField('Rg',max_length=20,null=True, )
@@ -33,6 +33,9 @@ class Pessoa(models.Model):
 
 	def __unicode__(self):
 		return self.NomePessoa
+'''
+class Medico(Pessoa):
+	Crm = models.CharField('CRM',max_length=)
 
 class Atendimento(models.Model):
 	Paciente = models.OneToOneField(Pessoa)
@@ -41,3 +44,4 @@ class Atendimento(models.Model):
 
 	#def __unicode__(self):
 	#	return self.DataConsulta
+'''
