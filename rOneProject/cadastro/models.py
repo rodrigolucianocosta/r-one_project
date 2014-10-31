@@ -35,9 +35,6 @@ class Pessoa(models.Model):
 	bairro = models.CharField('Bairro',max_length=100,null=True)
 	cidade = models.CharField('Cidade',max_length=100,null=True)
 	uf = models.CharField('UF',max_length=2,choices=STATE_CHOICES,null=True)
-	
-
-
 	def __unicode__(self):
 		return self.NomePessoa
 
@@ -48,29 +45,13 @@ class Medico(Pessoa):
 		super(CharField, self).__init__(*args, **kwargs)
 		return self.Especialidade
 		
-
-
 class Paciente(Pessoa):
 	#cidAdesao = models.ForeignKey(cidAdesao,verbose_name="numero do cid",null=True)
 	CartaoSus = models.CharField('Cartao Sus',max_length=20,null=True)
-
-
 	'''problemas com unicode'''
 	def __unicode__(self):
-    		#super(CharField, self).__init__(*args, **kwargs)
-    
+    		#super(CharField, self).__init__(*args, **kwargs)   
 		return self.CartaoSus
-	
-
-
-class Atendimento(models.Model):
-	'''#problemas com relacionamento 29 de outubro
-	#Paciente = models.OneToOneField(Atendimento.Pessoa)
-	#Medico = models.OneToOneField(Atendimento.Medico)'''
-	DataConsulta = models.DateField('data da consulta',null=True)
-	
-	def __unicode__(self):
-		return self.DataConsulta
 
 class cidAdesao(models.Model):
 	cidPessoa = models.CharField('numero do cid',max_length=50, null=True)
@@ -78,15 +59,3 @@ class cidAdesao(models.Model):
 
 	def __unicode__(self):
 		return self.cidPessoa
-
-class AtendimentoFamiliar(models.Model):
-	Paciente = models.ForeignKey(Paciente)
-	PlanoIntervencao = models.CharField('Plano de Intervencao',max_length=50,null=True)
-	'''ComposicaoFamiliar1 = models.CharField('Composicao Familiar 1',max_length=50,null=True)
-	ComposicaoFamiliar2 = models.CharField('Composicao Familiar 2',max_length=50,null=True)
-	ComposicaoFamiliar3 = models.CharField('Composicao Familiar 3',max_length=50,null=True)
-	ComposicaoFamiliar4 = models.CharField('Composicao Familiar 4',max_length=50,null=True)
-	ComposicaoFamiliar5 = models.CharField('Composicao Familiar 5',max_length=50,null=True)'''
-
-	def __unicode__(self):
-		return self.PlanoIntervencao
