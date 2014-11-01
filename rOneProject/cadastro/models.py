@@ -18,7 +18,6 @@ class TipoUsuario(models.Model):
 
 
 class Pessoa(models.Model):
-	TipoUsuario = models.ForeignKey(TipoUsuario,verbose_name="Tipo de Usuario",null=True)
 	NomePessoa = models.CharField('Nome',max_length=100, null=True)
 	Cpf = models.CharField('Cpf',max_length=11,null=True)
 	Rg = models.CharField('Rg',max_length=20,null=True, )
@@ -42,20 +41,23 @@ class Medico(Pessoa):
 	Crm = models.CharField('Crm',max_length=10, null=True)
 	#Especialidade = models.CharField('Especialidade',max_length=20,nul=True)
 	def  __unicode__(self):
-		super(CharField, self).__init__(*args, **kwargs)
+		super(NomePessoa, self).__init__(*args, **kwargs)
 		return self.Especialidade
 		
 class Paciente(Pessoa):
 	#cidAdesao = models.ForeignKey(cidAdesao,verbose_name="numero do cid",null=True)
+	#TipoUsuario = models.ForeignKey(TipoUsuario,verbose_name="Tipo de Usuario",null=True)
 	CartaoSus = models.CharField('Cartao Sus',max_length=20,null=True)
 	'''problemas com unicode'''
 	def __unicode__(self):
     		#super(CharField, self).__init__(*args, **kwargs)   
 		return self.CartaoSus
 
-class cidAdesao(models.Model):
-	cidPessoa = models.CharField('numero do cid',max_length=50, null=True)
-	descricao = models.CharField('descriacao do cid',max_length=100, null=True)
+class Cid(models.Model):
+	CodigoPrincipal = models.CharField('Codigo do Cid',max_length=10,null=True)
+	SubCodigo = models.CharField('SubCodigo do Cid',max_length=2,null=True)
+	ciddescricao = models.CharField('descriacao do cid',max_length=100, null=True)
 
 	def __unicode__(self):
-		return self.cidPessoa
+		super(CodigoPrincipal, self).__init__(*args, **kwargs)
+		return self.Cid

@@ -2,7 +2,7 @@
 from forms import PessoaForm
 from django.contrib import admin
 from models import Pessoa
-from models import TipoUsuario,Medico,Paciente,cidAdesao
+from models import TipoUsuario,Medico,Paciente,Cid
 from forms import PessoaForm
 # Register your models here.
 
@@ -21,8 +21,8 @@ class TipoUsuarioAdmin(admin.ModelAdmin):
 	list_display = ['tipo']	
 	save_as = True
 
-class CidAdesaoAdmin(admin.ModelAdmin):
-	list_display =	['cidPessoa']
+class CidAdmin(admin.ModelAdmin):
+	list_display =	['CodigoPrincipal']
 	save_as = True 	
 
 '''class AtendimentoFamiliarAdmin(admin.ModelAdmin):
@@ -34,4 +34,4 @@ class CidAdesaoAdmin(admin.ModelAdmin):
 admin.site.register(Medico,MedicoAdmin)
 admin.site.register(Paciente,PacienteAdmin)
 admin.site.register(TipoUsuario,TipoUsuarioAdmin)
-admin.site.register(cidAdesao,CidAdesaoAdmin)
+admin.site.register(Cid,CidAdmin)
