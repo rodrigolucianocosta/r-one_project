@@ -74,7 +74,9 @@ class Atendimento(models.Model):
 
 class cidAdesao(models.Model):
 	cidPessoa = models.CharField('numero do cid',max_length=50, null=True)
+	subCodigoCid = models.CharField('sub Codigo do Cid',max_length=2,null=True)
 	descricao = models.CharField('descriacao do cid',max_length=100, null=True)
+
 
 	def __unicode__(self):
 		return self.cidPessoa
