@@ -18,7 +18,6 @@ class TipoUsuario(models.Model):
 
 
 class Pessoa(models.Model):
-	TipoUsuario = models.ForeignKey(TipoUsuario,verbose_name="Tipo de Usuario",null=True)
 	NomePessoa = models.CharField('Nome',max_length=100, null=True)
 	Cpf = models.CharField('Cpf',max_length=11,null=True)
 	Rg = models.CharField('Rg',max_length=20,null=True, )
@@ -35,9 +34,6 @@ class Pessoa(models.Model):
 	bairro = models.CharField('Bairro',max_length=100,null=True)
 	cidade = models.CharField('Cidade',max_length=100,null=True)
 	uf = models.CharField('UF',max_length=2,choices=STATE_CHOICES,null=True)
-	
-
-
 	def __unicode__(self):
 		return self.NomePessoa
 
@@ -45,21 +41,18 @@ class Medico(Pessoa):
 	Crm = models.CharField('Crm',max_length=10, null=True)
 	#Especialidade = models.CharField('Especialidade',max_length=20,nul=True)
 	def  __unicode__(self):
-		super(CharField, self).__init__(*args, **kwargs)
+		super(NomePessoa, self).__init__(*args, **kwargs)
 		return self.Especialidade
 		
-
-
 class Paciente(Pessoa):
 	#cidAdesao = models.ForeignKey(cidAdesao,verbose_name="numero do cid",null=True)
+	#TipoUsuario = models.ForeignKey(TipoUsuario,verbose_name="Tipo de Usuario",null=True)
 	CartaoSus = models.CharField('Cartao Sus',max_length=20,null=True)
-
-
 	'''problemas com unicode'''
 	def __unicode__(self):
-    		#super(CharField, self).__init__(*args, **kwargs)
-    
+    		#super(CharField, self).__init__(*args, **kwargs)   
 		return self.CartaoSus
+<<<<<<< HEAD
 	
 
 
@@ -80,15 +73,14 @@ class cidAdesao(models.Model):
 
 	def __unicode__(self):
 		return self.cidPessoa
+=======
+>>>>>>> d69d8fbd7e5262c0acea77c7d8636f6b51db1a24
 
-class AtendimentoFamiliar(models.Model):
-	Paciente = models.ForeignKey(Paciente)
-	PlanoIntervencao = models.CharField('Plano de Intervencao',max_length=50,null=True)
-	'''ComposicaoFamiliar1 = models.CharField('Composicao Familiar 1',max_length=50,null=True)
-	ComposicaoFamiliar2 = models.CharField('Composicao Familiar 2',max_length=50,null=True)
-	ComposicaoFamiliar3 = models.CharField('Composicao Familiar 3',max_length=50,null=True)
-	ComposicaoFamiliar4 = models.CharField('Composicao Familiar 4',max_length=50,null=True)
-	ComposicaoFamiliar5 = models.CharField('Composicao Familiar 5',max_length=50,null=True)'''
+class Cid(models.Model):
+	CodigoPrincipal = models.CharField('Codigo do Cid',max_length=10,null=True)
+	SubCodigo = models.CharField('SubCodigo do Cid',max_length=2,null=True)
+	ciddescricao = models.CharField('descriacao do cid',max_length=100, null=True)
 
 	def __unicode__(self):
-		return self.PlanoIntervencao
+		super(CodigoPrincipal, self).__init__(*args, **kwargs)
+		return self.Cid
