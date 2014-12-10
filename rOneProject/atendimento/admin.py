@@ -1,17 +1,18 @@
+#coding:utf-8
 from django.contrib import admin
 from models import Atendimento,AtendimentoFamiliar,Pessoa,Medico,Paciente,Cid
 # Register your models here.
 
 class AtendimentoAdmin(admin.ModelAdmin):
-	list_display = ['SalaAtendimento']
+	list_display = ['TipoAtendimento','DataAtendimento','SalaAtendimento']
 	save_as=True
 
 class AtendimentoFamiliarAdmin(admin.ModelAdmin):
-	list_display = ['AtendimentoFamiliar']
+	list_display = ['TipoAtendimento']
 	save_as=True
 
 class MedicoAdmin(admin.ModelAdmin):
-	list_display = ['']
+	list_display = ['NomePessoa','Crm','Especialidade']
 	save_as=True
 
 	list_filter = ['Crm']

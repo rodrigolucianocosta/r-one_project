@@ -8,7 +8,7 @@ TIPO_ATENDIMENTO = [
       
       ('A','RETORNO'),
       ('B','CONSULTA'),
-      ('C', 'AGENDAMENTO')
+      ('C','AGENDAMENTO')
 
 ]
 
@@ -42,15 +42,25 @@ class Medico(Pessoa):
 	Crm = models.CharField('Crm',max_length=10, null=True)
 	Especialidade = models.CharField('Especialidade',max_length=20,null=True)
 	
+	class Meta:
+		verbose_name = "Medico"
+		verbose_name_plural = "Medico"
+
+
 	def  __unicode__(self):
-		super(NomePessoa, self).__init__(*args, **kwargs)
+		#super(Pessoa, self).__init__(*args, **kwargs)
 		return self.Crm
 		
 class Paciente(Pessoa):
 	CartaoSus = models.CharField('Cartao Sus',max_length=20,null=True)
-	'''problemas com unicode'''
+	
+	class Meta:
+		verbose_name = "Paciente"
+		verbose_name_plural = "Paciente"
+
+
 	def __unicode__(self):
-		super(Pessoa, self).__init__(*args, **kwargs)
+		#super(Pessoa, self).__init__(*args, **kwargs)
 		return self.CartaoSus
 
 	
@@ -64,6 +74,7 @@ class Cid(models.Model):
 #----------------------------------------------------------------------------------------------
 
 class Atendimento (models.Model):
+	
 	SalaAtendimento = models.IntegerField('Sala de Atendimento',max_length=2,null=True)
 	TipoAtendimento = models.CharField('Tipo de Atendimento',max_length=1,choices=TIPO_ATENDIMENTO,null=True)
 	DataAtendimento = models.DateField('Data de Atendimento',null=True)
@@ -74,10 +85,10 @@ class Atendimento (models.Model):
 	
 	class Meta:
 		verbose_name = "Atendimento"
-		verbose_name_plural = "Atendimentos"
+		verbose_name_plural = "Atendimento"
 	
 	def __unicode__(self):
-		return self.SalaAtendimento
+		return self.TipoAtendimento
 
 
 class AtendimentoFamiliar(models.Model):
@@ -88,12 +99,6 @@ class AtendimentoFamiliar(models.Model):
 	AtendimentoFamiliar = models.CharField('Atendimento Familiar',max_length=100,null=True)
 	TipoAtendimento = models.CharField('Tipo SubEvento',max_length=1,choices=TIPO_ATENDIMENTO,null=True)
 	#Responsavel = models.ForeignKey(Pessoa,verbose_name="Responsavel SubEvento",null=True)
-	DataSubEvento = models.DateField('Data SubEvento',null=True)
-	DuracaoSubEvento = models.IntegerField('Duracao SubEvento',null=True, help_text="Informar duração em minutos")
-	LocalSubEvento = models.CharField('Local Subevento',max_length=100,null=True)
- NumParticipantesSubEvento = models.IntegerField('Numero de Participantes SubEvento',validators=[MinValueValidator(1),MaxValueValidator(1000)],null=True)
-	InicioInscricao = models.DateField('Data inicio da inscriçao',null=True)
-	FimInscricao = models.DateField('Data Fim da inscricao',null=True)
 	'''
 	class Meta:
 		verbose_name = "Atendimento Familiar"
