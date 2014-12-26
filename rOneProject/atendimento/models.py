@@ -25,8 +25,8 @@ class Pessoa(models.Model):
 	Sexo = models.CharField('Sexo',max_length=1,choices=SEXO_OPCOES,null=True)
 	Etinia = models.CharField('Etinia',max_length=10,null=True)
 	NascimentoData = models.DateField('Data de Nascimento',null=True)
-	Telefone = models.IntegerField('Telefone',max_length=10,null=True)
-	Celular = models.IntegerField(max_length=10,unique=True,null=True)
+	Telefone = models.CharField('Telefone',max_length=8,null=True)
+	Celular = models.CharField(max_length=9,unique=True,null=True)
 	NomeMae = models.CharField('Nome da Mae',max_length=50,null=True)
 	NomePai = models.CharField('Nome do Pai',max_length=50,null=True)
 	Rua = models.CharField('Nome da Rua',max_length=100,null=True)
@@ -52,6 +52,7 @@ class Medico(Pessoa):
 		return self.Crm
 		
 class Paciente(Pessoa):
+	
 	CartaoSus = models.CharField('Cartao Sus',max_length=20,null=True)
 	
 	class Meta:
@@ -74,10 +75,11 @@ class Cid(models.Model):
 #----------------------------------------------------------------------------------------------
 
 class Atendimento (models.Model):
-	
+	Paciente = models.ForeignKey('Paciente',verbose_name="Paciente",null=False)
+	Medico = models.ForeignKey('Medico',verbose_name="Medico",null=False)
 	SalaAtendimento = models.IntegerField('Sala de Atendimento',max_length=2,null=True)
 	TipoAtendimento = models.CharField('Tipo de Atendimento',max_length=1,choices=TIPO_ATENDIMENTO,null=True)
-	DataAtendimento = models.DateField('Data de Atendimento',null=True)
+	DataAtendimento = models.DateTimeField('Data de Atendimento',null=True)
 	ResponsavelMarcacao = models.CharField('Responsavel pela Marcacao',max_length=100,null=True)
 
 	#InicioInscricao = models.DateField('Data inicio da inscriçao',null=True)
@@ -92,14 +94,14 @@ class Atendimento (models.Model):
 
 
 class AtendimentoFamiliar(models.Model):
-	TipoAtendimento = models.CharField('Tipo SubEvento',max_length=1,choices=TIPO_ATENDIMENTO,null=True)
-	InicioInscricao = models.DateField('Data inicio da inscriçao',null=True)
-	FimInscricao = models.DateField('Data Fim da inscricao',null=True)
-	'''AtendimentoF = models.ForeignKey(Atendimento,verbose_name="Atendimento Familiar",null=False)
-	AtendimentoFamiliar = models.CharField('Atendimento Familiar',max_length=100,null=True)
-	TipoAtendimento = models.CharField('Tipo SubEvento',max_length=1,choices=TIPO_ATENDIMENTO,null=True)
-	#Responsavel = models.ForeignKey(Pessoa,verbose_name="Responsavel SubEvento",null=True)
-	'''
+	Paciente = models.ForeignKey('Paciente',verbose_name='Paciente',null=False)
+	TipoAtendimento = models.CharField('Tipo de atendimento',max_length=1,choices=TIPO_ATENDIMENTO,null=True)
+	SalaAtendimento = models.CharField('Sala de Atendimento',max_length=2,null=False)
+	DataAtendimento = models.DateTimeField('Data de Atendimento',null=True)
+	ResponsavelMarcacao = models.CharField('Responsavel pela Marcacao',max_length=20,null=True)
+
+	
+	
 	class Meta:
 		verbose_name = "Atendimento Familiar"
 		verbose_name_plural = "Atendimento Familiar"
