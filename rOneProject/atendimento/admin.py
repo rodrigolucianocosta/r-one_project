@@ -4,7 +4,7 @@ from models import Atendimento,AtendimentoFamiliar,Pessoa,Medico,Paciente,Cid
 # Register your models here.
 
 class AtendimentoAdmin(admin.ModelAdmin):
-	list_display = ['TipoAtendimento','DataAtendimento','SalaAtendimento']
+	list_display = ['TipoAtendimento','DataAtendimento','Paciente','SalaAtendimento']
 	save_as=True
 
 class AtendimentoFamiliarAdmin(admin.ModelAdmin):

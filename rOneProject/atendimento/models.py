@@ -54,19 +54,16 @@ class Medico(Pessoa):
 class Paciente(Pessoa):
 	
 	CartaoSus = models.CharField('Cartao Sus',max_length=20,null=True)
-	
 	class Meta:
 		verbose_name = "Paciente"
 		verbose_name_plural = "Paciente"
-
-
 	def __unicode__(self):
 		#super(Pessoa, self).__init__(*args, **kwargs)
 		return self.CartaoSus
 
 	
 class Cid(models.Model):
-	CodigoPrincipal = models.CharField('Codigo do Cid',max_length=10,null=True)
+	CodigoPrincipal = models.CharField('Codigo do Cid',max_length=5,null=True)
 	SubCodigo = models.CharField('SubCodigo do Cid',max_length=2,null=True,blank=True)
 	ciddescricao = models.CharField('descriacao do cid',max_length=100, null=True)
 
@@ -81,10 +78,6 @@ class Atendimento (models.Model):
 	TipoAtendimento = models.CharField('Tipo de Atendimento',max_length=1,choices=TIPO_ATENDIMENTO,null=True)
 	DataAtendimento = models.DateTimeField('Data de Atendimento',null=True)
 	ResponsavelMarcacao = models.CharField('Responsavel pela Marcacao',max_length=100,null=True)
-
-	#InicioInscricao = models.DateField('Data inicio da inscriçao',null=True)
-	#FimInscricao = models.DateField('Data Fim da inscricao',null=True)
-	
 	class Meta:
 		verbose_name = "Atendimento"
 		verbose_name_plural = "Atendimento"

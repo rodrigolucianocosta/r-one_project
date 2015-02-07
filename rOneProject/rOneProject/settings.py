@@ -1,3 +1,4 @@
+#coding: utf-8
 """
 Django settings for rOneProject project.
 
@@ -23,6 +24,9 @@ SECRET_KEY = 'en!jod5#!21!5^nfp9cl#=arv6m9xd$_q@^-8_#%&f_=@&f-&c'
 DEBUG = True
 
 TEMPLATE_DEBUG = True
+
+#Adicao de template loaders
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 ALLOWED_HOSTS = []
 
